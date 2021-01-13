@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import BottomNavigator from './bottom';
+import BottomNavigator from './MainTabNavigator';
 import { colors } from '../constants';
 import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -12,7 +12,9 @@ const RootNavigator: React.FC = () => {
       <Stack.Navigator
         screenOptions={{
             headerStyle: {
-                backgroundColor: colors.ligth.tint
+                backgroundColor: colors.ligth.tint,
+                shadowOpacity: 0,
+                elevation: 0
             },
             headerTintColor: colors.ligth.background,
             headerTitleAlign: 'left',
@@ -35,12 +37,12 @@ const RootNavigator: React.FC = () => {
                 >
                     <Octicons 
                         name="search"
-                        size={24}
+                        size={22}
                         color='white'
                     />
                     <MaterialCommunityIcons 
                         name="dots-vertical"
-                        size={24}
+                        size={22}
                         color='white'
                     />
                 </View>
