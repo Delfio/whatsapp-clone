@@ -1,3 +1,4 @@
 import colors from './colors';
+import screenDimentions from './screen';
 
-export { colors };
+export { colors, screenDimentions };
