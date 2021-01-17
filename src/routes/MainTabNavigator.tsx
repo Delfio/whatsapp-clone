@@ -8,6 +8,8 @@ const Top = createMaterialTopTabNavigator();
 
 // import { Container } from './styles';
 
+import ChatPage from '../pages/Chat';
+
 const teste = () => (
     <View>
         <Text>asdfasdf</Text>
@@ -44,13 +46,13 @@ const MainTabNavigator: React.FC = () => {
                         />
                     )
                 ),
-                tabBarLabel: () => null
+                tabBarLabel: () => null,
             }}
             component={teste}
         />
         <Top.Screen 
             name="CONVERSAS"
-            component={teste}
+            component={ChatPage}
         />
         <Top.Screen 
             name="STATUS"
