@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomNavigator from './MainTabNavigator';
 import { colors } from '../constants';
 import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import ChatRoom from '../pages/ChatRoom';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,7 @@ const RootNavigator: React.FC = () => {
             }
         }}
       >
-          <Stack.Screen  options={{
+        <Stack.Screen  options={{
               title: 'WhatsApp',
               headerRight: () => (
                 <View
@@ -47,7 +48,16 @@ const RootNavigator: React.FC = () => {
                     />
                 </View>
               )
-          }} name="root" component={BottomNavigator} />
+          }} 
+          name="root" 
+          component={BottomNavigator} 
+        />
+        <Stack.Screen  options={{
+              title: 'chatroom',
+          }} 
+          name="chatroom" 
+          component={ChatRoom} 
+        />
       </Stack.Navigator>
   );
 }

@@ -8,7 +8,8 @@ import {
   ContainerMessages,
   Time,
   TimeText,
-  ContainerAvatar
+  ContainerAvatar,
+  NameOfUser
 } from './styles';
 
 type IChatList = {
@@ -49,7 +50,7 @@ const ChatListItem: React.FC<IChatList> = ({
         />
       </ContainerAvatar>
       <ContainerMessages>
-        <Text>{users[0].name}</Text>
+        <NameOfUser>{users[0].name}</NameOfUser>
         <Time>
           <TimeText>{timeFormated}</TimeText>
         </Time>
