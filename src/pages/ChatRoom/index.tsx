@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
-import { useRoute, useNavigation, Route } from '@react-navigation/native';
+import { Text, View, FlatList, SafeAreaView } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import ChatMessage from '../../components/ChatMessage';
+
+import ChatRoomData from '../../data/Chats';
 
 // import { Container } from './styles';
 type IChatRoom = {
@@ -14,7 +17,6 @@ const ChatRoom: React.FC = () => {
   const { params } = routes;
   const { setOptions } = useNavigation();
 
-
   useEffect(() => {
     const { name } = (params as IChatRoom);
     setOptions({
@@ -22,12 +24,14 @@ const ChatRoom: React.FC = () => {
     })
   }, [params]);
 
-
-
   return (
-    <View>
-        <Text>chat room</Text>
-    </View>
+    <SafeAreaView>
+      <FlatList 
+        data={ChatRoomData.messages}
+        renderItem={({item}) => <ChatMessage data={item} />}
+        keyExtractor={({id}) => id}
+      />
+    </SafeAreaView>
   );
 }
 
