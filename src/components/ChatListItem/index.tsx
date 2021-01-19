@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { IChatRoom } from '../../utils/types';
-import { Text } from 'react-native';
+import { GestureResponderEvent, Text, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { 
   Container,
@@ -21,6 +22,14 @@ const ChatListItem: React.FC<IChatList> = ({
 }) => {
   const { users, lastMessage } = chatRoom;
 
+  const { navigate } = useNavigation();
+  const handleClickChat = useCallback((_: GestureResponderEvent) => {
+    navigate('chatroom', { 
+      id: chatRoom.id,
+      name: users[0].name,
+    });
+  }, [chatRoom]);
+
   const timeFormated = useMemo(() => {
     const time = new Date(lastMessage.createdAt)
 
@@ -39,24 +48,29 @@ const ChatListItem: React.FC<IChatList> = ({
   }, [lastMessage]);
 
   return (
-    <Container>
-      <ContainerAvatar>
-        <Avatar 
-          resizeMode="cover"
-          resizeMethod="scale"
-          source={{
-            uri: users[0].imageUri
-          }}
-        />
-      </ContainerAvatar>
-      <ContainerMessages>
-        <NameOfUser>{users[0].name}</NameOfUser>
-        <Time>
-          <TimeText>{timeFormated}</TimeText>
-        </Time>
-        <Text numberOfLines={1} >{lastMessage.content}</Text>
-      </ContainerMessages>
-    </Container>
+    <TouchableWithoutFeedback
+      onPress={handleClickChat}
+    >
+      <Container>
+        <ContainerAvatar>
+          <Avatar 
+            resizeMode="cover"
+            resizeMethod="scale"
+            source={{
+              uri: users[0].imageUri
+            }}
+          />
+        </ContainerAvatar>
+        <ContainerMessages>
+          <NameOfUser>{users[0].name}</NameOfUser>
+          <Time>
+            <TimeText>{timeFormated}</TimeText>
+          </Time>
+          <Text numberOfLines={1} >{lastMessage.content}</Text>
+        </ContainerMessages>
+      </Container>  
+    </TouchableWithoutFeedback>
+    
   );
 }
 

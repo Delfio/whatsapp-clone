@@ -3,8 +3,9 @@ import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomNavigator from './MainTabNavigator';
 import { colors } from '../constants';
-import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Octicons, MaterialCommunityIcons, FontAwesome, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import ChatRoom from '../pages/ChatRoom';
+
 
 const Stack = createStackNavigator();
 
@@ -52,9 +53,41 @@ const RootNavigator: React.FC = () => {
           name="root" 
           component={BottomNavigator} 
         />
-        <Stack.Screen  options={{
-              title: 'chatroom',
-          }} 
+        <Stack.Screen
+          // options={({route}) => {
+          //   console.log(route.params)
+          //   return {
+          //     title: route.params.id
+          //   }
+          // }}
+          options={{
+            headerRight: () => (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: 100,
+                  justifyContent: 'space-between',
+                  marginRight: 10
+                }}
+              >
+                <FontAwesome5 
+                  name="video"
+                  size={22} 
+                  color="white" 
+                />
+                <MaterialIcons
+                  name="call"
+                  size={22} 
+                  color="white" 
+                />
+                <MaterialCommunityIcons 
+                  name="dots-vertical"
+                  size={24}
+                  color="white"
+                />
+              </View>
+            )
+          }}
           name="chatroom" 
           component={ChatRoom} 
         />
